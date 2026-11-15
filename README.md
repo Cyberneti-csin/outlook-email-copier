@@ -8,18 +8,14 @@ This app is prepared to deploy from its own public GitHub repository. Do not pub
 
 1. On GitHub, create a **new public repository** named `outlook-email-copier`. Do not add a README, license, or starter workflow.
 2. In the new repository, open **Settings → Pages** and set the build and deployment source to **GitHub Actions** before pushing code.
-3. In PowerShell, run these commands to publish only this standalone app folder. Replace `YOUR-USERNAME` with your GitHub username:
+3. In PowerShell, run these commands to push only this standalone app folder:
 
    ```powershell
    Set-Location C:\Users\Administrator\outlook-email-copier
-   git init -b main
-   git add .
-   git commit -m "Initial Outlook Email Copier app"
-   git remote add origin https://github.com/YOUR-USERNAME/outlook-email-copier.git
    git push -u origin main
    ```
 
-   This pushes the app files, including `.github/workflows/deploy.yml`; it does not push the parent Brewery Quality Standard repository.
+   If GitHub asks you to sign in, complete its browser authentication prompt. The local folder already has an `origin` remote set to `https://github.com/Cyberneti-csin/outlook-email-copier.git`. This pushes only the app files, including `.github/workflows/deploy.yml`; it does not push the parent Brewery Quality Standard repository.
 4. Open **Actions** and wait for **Deploy Outlook Email Copier** to finish successfully. The Pages site address is shown in the deployment details and normally looks like `https://GITHUB-USERNAME.github.io/outlook-email-copier/`.
 5. In Microsoft Entra, open this app registration's **Authentication** settings and add that exact HTTPS site address as a **Single-page application** redirect URI. Keep `http://localhost:8000/` if you also want local testing.
 6. Open the published site and sign in with Microsoft. Each person must use their own account and grant the app the delegated `Mail.Read` permission.
